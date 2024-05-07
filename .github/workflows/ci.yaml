@@ -9,11 +9,10 @@ on:
 env:
   build-number-prefix: '1.29'
   
-permissions:
-  contents: write
-  
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: windows-latest
 
     steps:
