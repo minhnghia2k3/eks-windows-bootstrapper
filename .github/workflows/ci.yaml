@@ -49,5 +49,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ steps.setup_image_vars.outputs.imageVersion }}
           files: |
-            **\publish\EKS-Windows-Bootstrapper.exe
-            **\publish\Start-EKSBootstrap.ps1
+            **/publish/*
