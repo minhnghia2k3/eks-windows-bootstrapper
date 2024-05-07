@@ -11,6 +11,12 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - name: Setup Image Variables
+        id: setup_image_vars
+        run: |
+          $VERSION="${{env.build-number-prefix}}.${{github.run_number}}"
+          echo "imageVersion=$VERSION" >> "$env:GITHUB_OUTPUT"
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -25,9 +31,16 @@ jobs:
       - name: Build app
         run: dotnet publish -c Release
         
+      - name: Tag Code
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          release_branches: .*
+          custom_tag: ${{ steps.setup_image_vars.outputs.imageVersion }}
+          
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.setup_image_vars.outputs.imageVersion }}
           files: |
             bin\Release\net8.0\win-x64\publish\EKS-Windows-Bootstrapper.exe
             bin\Release\net8.0\win-x64\publish\Start-EKSBootstrap.ps1
