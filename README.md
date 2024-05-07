@@ -12,7 +12,7 @@ The EKS Windows Bootstrapper is a fast and efficient tool for bootstrapping Wind
 
 Use AWS Image Builder to create a custom AMI with the boostrapper installed. You can use the AMIs in a Karpenter Ec2NodeClass.
 
-- [Image Builder Instructions](https://github.com/your-username/eks-windows-bootstrapper/wiki)
+- [Image Builder Instructions](https://github.com/atg-cloudops/eks-windows-bootstrapper/wiki)
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ To get started with the EKS Windows Bootstrapper, follow these steps:
 1. Clone the repository:
 
     ```shell
-    git clone https://github.com/your-username/eks-windows-bootstrapper.git
+    git clone https://github.com/atg-cloudops/eks-windows-bootstrapper.git
     ```
 
 2. Navigate to the project directory:
@@ -43,12 +43,12 @@ To get started with the EKS Windows Bootstrapper, follow these steps:
     dotnet build
     ```
 
-For more detailed instructions and advanced usage, please refer to the [documentation](https://github.com/your-username/eks-windows-bootstrapper/wiki).
+For more detailed instructions and advanced usage, please refer to the [documentation](https://github.com/atg-cloudops/eks-windows-bootstrapper/wiki).
 
 ## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/your-username/eks-windows-bootstrapper).
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the [GitHub repository](https://github.com/atg-cloudops/eks-windows-bootstrapper).
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://opensource.org/license/mit).
