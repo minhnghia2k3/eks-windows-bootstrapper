@@ -1,0 +1,66 @@
+# .NET Core
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.userprefs
+*.vscode
+*.vs
+*.suo
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vscode/
+.vs/
+*.sln.docstates
+*.suo
+*.user
+*.userosscache
+*.sln.ide
+*.sln.ide-shm
+*.sln.ide-wal
+
+# Rider
+.idea/
+*.sln.iml
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Resharper
+_ReSharper*/
+*.resharper*
+*.DotSettings.user
+
+# GhostDoc
+[Gg]host[Dd]oc*
+
+# StyleCop
+StyleCopReport.xml
+
+# Build results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Roslyn cache directories
+*.ide.cache
+*.ide.cache.lock
+
+.DS_Store
