@@ -37,6 +37,7 @@ jobs:
       - name: Tag Code
         uses: mathieudutour/github-tag-action@v6.1
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           release_branches: .*
           custom_tag: ${{ steps.setup_image_vars.outputs.imageVersion }}
           
