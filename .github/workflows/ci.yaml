@@ -1,10 +1,16 @@
 name: Build and Release
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - '**'
+      - main
+      - "release/**"
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+  pull_request:
+    branches:
+      - main
+      - "release/**"
 
 env:
   build-number-prefix: '1.29'
@@ -35,18 +41,10 @@ jobs:
 
       - name: Build app
         run: dotnet publish -c Release
-        
-      - name: Tag Code
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          release_branches: .*
-          custom_tag: ${{ steps.setup_image_vars.outputs.imageVersion }}
           
       - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ steps.setup_image_vars.outputs.imageVersion }}
           files: |
             **/publish/*
