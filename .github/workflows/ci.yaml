@@ -6,6 +6,9 @@ on:
     branches:
       - '**'
 
+env:
+  build-number-prefix: '1.29'
+
 jobs:
   build:
     runs-on: windows-latest
