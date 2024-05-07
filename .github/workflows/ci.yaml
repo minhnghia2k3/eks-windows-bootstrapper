@@ -1,0 +1,55 @@
+name: Build and Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build app
+        run: dotnet build --configuration Release
+
+  release:
+    needs: build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build app
+        run: dotnet build --configuration Release
+
+      - name: Create release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          body: |
+            This is the first release of the app.
+          draft: false
+          prerelease: false
