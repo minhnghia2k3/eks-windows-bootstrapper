@@ -1,0 +1,50 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+  pull_request:
+    branches:
+      - main
+      - "release/**"
+
+env:
+  build-number-prefix: '1.29'
+  
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+
+    steps:
+      - name: Setup Image Variables
+        id: setup_image_vars
+        run: |
+          $VERSION="${{env.build-number-prefix}}.${{github.run_number}}"
+          echo "imageVersion=$VERSION" >> "$env:GITHUB_OUTPUT"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build app
+        run: dotnet publish -c Release
+          
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            **/publish/*
