@@ -24,36 +24,11 @@ jobs:
 
       - name: Build app
         run: dotnet publish -c Release
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .\bin\Release\net8.0\win-x64\publish\EKS-Windows-Bootstrapper.exe
-          asset_name: EKS-Windows-Bootstrapper.exe
-          asset_content_type: application/octet-stream
-          
-      - name: Upload Assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .\bin\Release\net8.0\win-x64\publish\Start-EKSBootstrap.ps1
-          asset_name: Start-EKSBootstrap.ps1
-          asset_content_type: application/octet-stream
+          files: |
+            bin\Release\net8.0\win-x64\publish\EKS-Windows-Bootstrapper.exe
+            bin\Release\net8.0\win-x64\publish\Start-EKSBootstrap.ps1
