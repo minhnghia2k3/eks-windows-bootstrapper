@@ -9,7 +9,6 @@ The EKS Windows Bootstrapper is a fast and efficient tool for bootstrapping Wind
 - Easy to use and configure
 
 ## Installation
-
 Use AWS Image Builder to create a custom AMI with the boostrapper installed. You can use the AMIs in a Karpenter Ec2NodeClass.
 
 ```
@@ -29,10 +28,21 @@ phases:
               .\Install-Service.ps1; 
               Remove-Item 'Install-Service.ps1';
 ```
-
 Create a new AWS Image builder component with the above content and apply this component to your AWS EKS Windows node recipe.
 
 The output AMI can be used with karpenter or regular cluster autoscaler. No further setup is needed.
+
+### Update Unattend.xml
+
+Remove all the windows configuration components in the oobeSystem pass in unattend.xml which slow down first boot, so it looks like this:
+
+```
+  <settings pass="oobeSystem">
+    <component name="Security-Malware-Windows-Defender" ...>
+    </component>
+  </settings>
+```
+With these components removed, you will have to ensure your images are set to the right culture/timezone before the AMI is created - Windows won't be reconfigured on first boot.
 
 ## Prerequisites
 
