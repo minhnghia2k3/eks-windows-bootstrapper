@@ -44,6 +44,11 @@ Remove all the windows configuration components in the oobeSystem pass in unatte
 ```
 With these components removed, you will have to ensure your images are set to the right culture/timezone before the AMI is created - Windows won't be reconfigured on first boot.
 
+#### View Logs
+If you have access to the node, you can view the boostrapper logs with (in powershell):
+```
+get-eventlog Application -Source EKS* | fl
+```
 ## Prerequisites
 
 Before using the EKS Windows Bootstrapper, make sure you have the following prerequisites installed:
