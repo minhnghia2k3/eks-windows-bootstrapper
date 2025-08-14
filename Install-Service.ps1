@@ -1,5 +1,5 @@
 param(
-    $ReleaseUrl = "https://github.com/atg-cloudops/eks-windows-bootstrapper/releases/download/v1.32.0",
+    $ReleaseUrl = "https://github.com/minhnghia2k3/eks-windows-bootstrapper/releases/download/v1.32.1",
     [switch]$SkipSsmConfiguration
 )
 Write-Host "EKS Windows Bootstrapper Installation Script Started at $(Get-Date -Format "yyyy-MM-ddTHH:mm:ss")"

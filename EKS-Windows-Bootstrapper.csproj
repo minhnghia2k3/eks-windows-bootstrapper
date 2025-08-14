@@ -7,7 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishAot>true</PublishAot>
     <SelfContained>true</SelfContained>
   </PropertyGroup>
 

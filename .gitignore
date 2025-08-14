@@ -64,3 +64,4 @@ dlldata.c
 *.ide.cache.lock
 
 .DS_Store
+publish
