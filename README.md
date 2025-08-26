@@ -78,6 +78,12 @@ To get started with the EKS Windows Bootstrapper, follow these steps:
     dotnet build
     ```
 
+ 4. Publish the project:
+
+    ```shell
+    dotnet publish -c Release -r win-x64 -p:PublishAot=true -p:PublishTrimmed=true
+    ```
+
 For more detailed instructions and advanced usage, please refer to the [documentation](https://github.com/atg-cloudops/eks-windows-bootstrapper/wiki).
 
 ## Contributing
